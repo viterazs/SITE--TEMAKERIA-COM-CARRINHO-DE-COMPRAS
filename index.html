@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temakalandia - Autêntica Culinária Japonesa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #c41e3a;
+      --secondary: #1a1a1a;
+      --accent: #d4af37;
+      --text: #2c2c2c;
+      --bg: #fafafa;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header Profissional */
+    .header {
+      background: linear-gradient(135deg, var(--secondary) 0%, #2c2c2c 100%);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .logo-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 2px;
+    }
+
+    .logo-sub {
+      font-size: 0.9rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      font-weight: 300;
+    }
+
+    .nav {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 1rem;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+
+    .nav a:hover {
+      color: var(--primary);
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .cart-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .cart-btn:hover {
+      background: #a01828;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(196, 30, 58, 0.4);
+    }
+
+    .cart-count {
+      background: var(--accent);
+      color: var(--secondary);
+      font-size: 0.8rem;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                  url('https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=1600') center/cover;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      color: white;
+      text-shadow: 2px 2px 20px rgba(0,0,0,0.8);
+    }
+
+    .hero-jp {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 300;
+      letter-spacing: 5px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .btn-cta {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      display: inline-block;
+      box-shadow: 0 5px 20px rgba(196, 30, 58, 0.4);
+    }
+
+    .btn-cta:hover {
+      background: #a01828;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(196, 30, 58, 0.6);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+
+    /* Menu Grid */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .menu-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .menu-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .menu-card-content {
+      padding: 1.5rem;
+    }
+
+    .menu-card h3 {
+      font-size: 1.3rem;
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .menu-card p {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .menu-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .btn-add {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-add:hover {
+      background: #a01828;
+      transform: scale(1.05);
+    }
+
+    /* Cart Modal */
+    .cart-modal-bg {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cart-modal-bg.active {
+      display: flex;
+    }
+
+    .cart-modal {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: scale(0.9) translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .cart-modal h3 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #eee;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #999;
+      transition: color 0.3s;
+    }
+
+    .close-btn:hover {
+      color: var(--primary);
+    }
+
+    .cart-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-name {
+      font-weight: 600;
+      color: var(--secondary);
+      margin-bottom: 0.3rem;
+    }
+
+    .cart-item-qty {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .cart-item-price {
+      font-weight: 700;
+      color: var(--primary);
+      margin-right: 1rem;
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .remove-btn:hover {
+      color: var(--primary);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-top: 2px solid #eee;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .cart-total-label {
+      color: var(--secondary);
+    }
+
+    .cart-total-value {
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: linear-gradient(135deg, var(--secondary) 0%, #2c2c2c 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      color: white;
+    }
+
+    .contact-section h2 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .contact-section::after {
+      background: var(--accent);
+    }
+
+    .social-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .social-btn {
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .social-btn.whatsapp {
+      background: #25D366;
+    }
+
+    .social-btn.facebook {
+      background: #4267B2;
+    }
+
+    .social-btn.instagram {
+      background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    }
+
+    .social-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--secondary);
+      color: white;
+      padding: 3rem 2rem 1rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .footer-section p {
+      line-height: 1.8;
+      color: #ccc;
+    }
+
+    .footer-copy {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #444;
+      color: #999;
+    }
+
+    /* WhatsApp Float Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+      z-index: 999;
+      text-decoration: none;
+      transition: all 0.3s;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+      }
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7);
+      }
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.15);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav {
+        gap: 1.5rem;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-jp {
+        font-size: 1rem;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .social-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-main">Temakalandia</div>
+        <div class="logo-sub">ケイケイ手巻き屋</div>
+      </div>
+      <nav class="nav">
+        <a href="#menu">Cardápio</a>
+        <a href="#contact">Contato</a>
+      </nav>
+      <button class="cart-btn" id="openCart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Temakalandia </h1>
+      <p class="hero-jp">ケイケイ手巻き屋</p>
+      <p class="hero-subtitle">A arte do sushi e temaki em sua forma mais autêntica</p>
+      <a href="#menu" class="btn-cta">Explorar Cardápio</a>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <div class="container" id="menu">
+    <h2 class="section-title">Nosso Cardápio</h2>
+    <p class="section-subtitle">Seleção especial de temakis e pratos japoneses autênticos</p>
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+
+  <!-- Contact -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Entre em Contato</h2>
+      <p>Faça seu pedido ou tire dúvidas através dos nossos canais</p>
+      <div class="social-buttons">
+        <a href="https://wa.me/5511999999999" class="social-btn whatsapp" target="_blank">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="#" class="social-btn facebook">
+          <i class="fab fa-facebook-f"></i> Facebook
+        </a>
+        <a href="#" class="social-btn instagram">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Endereço</h3>
+        <p>
+          Rua dos Sabores, 123<br>
+          Bairro Japão<br>
+          São Paulo - SP<br>
+          CEP: 01234-567
+        </p>
+      </div>
+      <div class="footer-section">
+        <h3>Horário de Funcionamento</h3>
+        <p>
+          Segunda a Sábado: 18h às 23h<br>
+          Domingo: 18h às 22h<br>
+          <br>
+          Delivery disponível
+        </p>
+      </div>
+      <div class="footer-section">
+        <h3>Contato</h3>
+        <p>
+          WhatsApp: (11) 99999-9999<br>
+          Email: contato@temakalandia.com.br<br>
+          <br>
+          <a href="#" style="color: var(--accent)">@temakalandia_temakeria</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-copy">
+      © 2024 Temakalandia Temakeria - Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Cart Modal -->
+  <div class="cart-modal-bg" id="cartModalBg">
+    <div class="cart-modal">
+      <button class="close-btn" id="closeCart">&times;</button>
+      <h3>Seu Carrinho</h3>
+      <ul class="cart-list" id="cartList"></ul>
+      <div class="cart-total">
+        <span class="cart-total-label">Total:</span>
+        <span class="cart-total-value" id="cartTotal">R$ 0,00</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const menuItems = [
+      {
+        name: 'Temaki Salmão',
+        nameJp: 'サーモン手巻き',
+        desc: 'Cone de alga nori recheado com arroz japonês, salmão fresco, cream cheese e cebolinha',
+        price: 22.90,
+        img: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800'
+      },
+      {
+        name: 'Uramaki Califórnia',
+        nameJp: 'カリフォルニアロール',
+        desc: 'Arroz por fora com kani kama, pepino, manga e gergelim tostado',
+        price: 19.90,
+        img: 'https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=800'
+      },
+      {
+        name: 'Yakisoba Especial',
+        nameJp: '焼きそば',
+        desc: 'Macarrão oriental salteado com legumes frescos, carne e molho shoyu especial',
+        price: 27.90,
+        img: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=800'
+      },
+      {
+        name: 'Hot Roll',
+        nameJp: 'ホットロール',
+        desc: 'Sushi empanado e frito recheado com salmão, cream cheese e finalizado com molho tarê',
+        price: 24.90,
+        img: 'https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=800'
+      },
+      {
+        name: 'Sashimi de Salmão',
+        nameJp: '刺身',
+        desc: '10 fatias de salmão fresco selecionado, servido com shoyu e wasabi',
+        price: 29.90,
+        img: 'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=800'
+      },
+      {
+        name: 'Combo Especial',
+        nameJp: '特別セット',
+        desc: '20 peças variadas: temaki, uramaki, hossomaki e hot roll - perfeito para compartilhar',
+        price: 69.90,
+        img: 'https://images.unsplash.com/photo-1583623025817-d180a2221d0a?w=800'
+      },
+      {
+        name: 'Hossomaki Mix',
+        nameJp: '細巻きミックス',
+        desc: 'Seleção de 15 peças: salmão, atum e kani - tradição em cada mordida',
+        price: 26.90,
+        img: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800'
+      },
+      {
+        name: 'Temaki Hot Philadelphia',
+        nameJp: 'ホットフィラデルフィア',
+        desc: 'Cone empanado recheado com salmão grelhado, cream cheese e molho especial',
+        price: 25.90,
+        img: 'https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=800'
+      },
+      {
+        name: 'Refrigerante Lata',
+        nameJp: '飲み物',
+        desc: 'Coca-Cola, Guaraná ou Sprite - 350ml gelado',
+        price: 6.00,
+        img: 'https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=800'
+      }
+    ];
+
+    const menuGrid = document.getElementById('menuGrid');
+    const cartCount = document.getElementById('cartCount');
+    const cartModalBg = document.getElementById('cartModalBg');
+    const cartList = document.getElementById('cartList');
+    const cartTotal = document.getElementById('cartTotal');
+    const openCart = document.getElementById('openCart');
+    const closeCart = document.getElementById('closeCart');
+
+    let cart = [];
+
+    // Render menu
+    menuItems.forEach((item, index) => {
+      const card = document.createElement('div');
+      card.className = 'menu-card';
+      card.innerHTML = `
+        <img src="${item.img}" alt="${item.name}">
+        <div class="menu-card-content">
+          <h3>${item.name}</h3>
+          <p>${item.desc}</p>
+          <div class="menu-card-footer">
+            <span class="price">R$ ${item.price.toFixed(2)}</span>
+            <button class="btn-add" data-index="${index}">
+              <i class="fas fa-plus"></i> Adicionar
+            </button>
+          </div>
+        </div>
+      `;
+      menuGrid.appendChild(card);
+    });
+
+    // Add to cart
+    document.querySelectorAll('.btn-add').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const idx = parseInt(this.dataset.index);
+        const found = cart.find(i => i.idx === idx);
+        
+        if (found) {
+          found.qty++;
+        } else {
+          cart.push({ idx, qty: 1 });
+        }
+        
+        updateCartCount();
+      });
+    });
+
+    function updateCartCount() {
+      const total = cart.reduce((sum, i) => sum + i.qty, 0);
+      cartCount.textContent = total;
+    }
+
+    function renderCart() {
+      cartList.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartList.innerHTML = '<li class="cart-item"><span style="color:#999;">Seu carrinho está vazio</span></li>';
+      } else {
+        cart.forEach((item, i) => {
+          const prod = menuItems[item.idx];
+          const subtotal = prod.price * item.qty;
+          total += subtotal;
+
+          const li = document.createElement('li');
+          li.className = 'cart-item';
+          li.innerHTML = `
+            <div class="cart-item-info">
+              <div class="cart-item-name">${prod.name}</div>
+              <div class="cart-item-qty">Quantidade: ${item.qty}</div>
+            </div>
+            <span class="cart-item-price">R$ ${subtotal.toFixed(2)}</span>
+            <button class="remove-btn" data-i="${i}">
+              <i class="fas fa-trash"></i>
+            </button>
+          `;
+          cartList.appendChild(li);
+        });
+      }
+
+      cartTotal.textContent = `R$ ${total.toFixed(2)}`;
+
+      document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.onclick = function() {
+          const i = parseInt(this.dataset.i);
+          cart.splice(i, 1);
+          updateCartCount();
+          renderCart();
+        };
+      });
+    }
+
+    openCart.onclick = () => {
+      renderCart();
+      cartModalBg.classList.add('active');
+    };
+
+    closeCart.onclick = () => {
+      cartModalBg.classList.remove('active');
+    };
+
+    cartModalBg.onclick = (e) => {
+      if (e.target === cartModalBg) {
+        cartModalBg.classList.remove('active');
+      }
+    };
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
